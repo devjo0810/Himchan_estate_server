@@ -10,5 +10,8 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 
-    public List<MemberVO> findAll();
+    List<MemberVO> findAll();
+    MemberVO findById(String id);
+    int save(MemberVO member);
+    int checkId(String id);
 }

@@ -8,8 +8,17 @@
         FROM MEMBER
     </select>
 
-    <select id="selectTest" resultType="string">
-        SELECT now() FROM DUAL
+    <select id="findById" resultType="site.himchan.estate.vo.MemberVO">
+        SELECT * FROM MEMBER WHERE MEMBER_ID = #{id}
+    </select>
+
+    <insert id="save">
+        INSERT INTO MEMBER (MEMBER_ID, MEMBER_PWD, MEMBER_GRANT)
+        VALUES (#{memberId}, #{memberPwd}, #{memberGrant})
+    </insert>
+
+    <select id="checkId" resultType="int">
+        SELECT COUNT(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID = #{id}
     </select>
 
 </mapper>
