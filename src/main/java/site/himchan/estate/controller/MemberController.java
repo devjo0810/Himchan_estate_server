@@ -1,14 +1,12 @@
 package site.himchan.estate.controller;
 
-import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import site.himchan.estate.service.MemberService;
+import site.himchan.estate.vo.LoginVO;
 import site.himchan.estate.vo.MemberVO;
 
 import java.util.List;
@@ -19,15 +17,13 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
-    @RequestMapping("/select")
+    @GetMapping("/select")
     @ResponseBody
     public ResponseEntity select() {
-        List<MemberVO> list = memberService.findAll();
-
-        return new ResponseEntity(list, HttpStatus.OK);
+        return new ResponseEntity(memberService.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping("/save")
+    @PostMapping("/save")
     @ResponseBody
     public ResponseEntity save(@RequestParam String id,
                                @RequestParam String password,
@@ -39,7 +35,7 @@ public class MemberController {
         return new ResponseEntity(memberService.save(member), HttpStatus.OK);
     }
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     public ResponseEntity login(@RequestParam String id,
                                @RequestParam String password) throws Exception {

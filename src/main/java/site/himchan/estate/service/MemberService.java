@@ -17,7 +17,7 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public List<MemberVO> findAll() {
+    public List<LoginVO> findAll() {
         return memberMapper.findAll();
     }
 
