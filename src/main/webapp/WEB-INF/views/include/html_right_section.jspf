@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<section class="right-section">
+    <div class="calc-area">
+        <p>면적 계산기</p>
+        <hr>
+        <div class="flex">
+            <input type="text" class="group-input" id="input-calc">
+            <label for="input-calc" class="group-label" id="input-calc-label">평</label>
+        </div>
+        <div>
+            <label><input type="radio" name="select-area" value="1" checked>평</label>
+            <label><input type="radio" name="select-area" value="2">㎡</label>
+        </div>
+        <div>
+            <button class="btn block sub-bg" id="area-calc">계산하기</button>
+        </div>
+        <hr>
+        <div class="flex">
+            <!-- <input type="text" class="group-input" id="result-calc"> -->
+            <span class="group-input" id="result-calc"></span>
+            <label for="result-calc" class="group-label" id="result-calc-label">㎡</label>
+        </div>
+    </div>
+</section>

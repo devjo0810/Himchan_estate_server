@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<section class="left-section">
+    <a href="http://www.iros.go.kr/" target="_blank">
+        <i class="icon file-search"></i>
+        <div>
+            <span>등기부등본</span>
+            <p>열람/발급</p>
+        </div>
+    </a>
+    <a href="http://www.realtyprice.kr/notice/main/mainBody.htm" target="_blank">
+        <i class="icon internet"></i>
+        <div>
+            <span>정부민원포털24</span>
+            <p>무료조회</p>
+        </div>
+    </a>
+    <a href="http://rt.molit.go.kr/" target="_blank">
+        <i class="icon apartment"></i>
+        <div>
+            <span>아파트</span>
+            <p>실거래가 조회</p>
+        </div>
+    </a>
+</section>

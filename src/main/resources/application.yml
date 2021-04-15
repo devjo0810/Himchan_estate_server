@@ -1,0 +1,40 @@
+server:
+  port: 8085
+  tomcat:
+    file-encoding: UTF-8
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
+    session:
+      timeout: 7200
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      log-condition-evaluation-delta: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://3.36.171.96:3306/himchan?characterEncoding=UTF-8
+    username: root
+    password: test1234
+

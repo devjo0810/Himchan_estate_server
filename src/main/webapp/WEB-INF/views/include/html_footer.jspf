@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<footer class="main-footer">
+    <div>
+        <span>힘찬부동산</span>
+        <span>대표자 : 김힘찬</span>
+        <span>휴대폰 : 010-9414-5127</span>
+    </div>
+    <div>
+        <span>사업장소재지 : 경기도 수원시 권선구 고색동 215-1</span>
+        <span>사업자등록번호 : 681-08-01672</span>
+        <span>문의사항 : himchan5127@naver.com</span>
+    </div>
+    <div>
+        <span>Copyright (c) 2020-2021 by 힘찬부동산 All Rights Reserved.</span>
+    </div>
+</footer>

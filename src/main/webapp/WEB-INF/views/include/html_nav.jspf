@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<nav class="main-bg main-nav">
+    <ul>
+        <li class="item" id="main-navi-home">
+            <span>홈</span>
+        </li>
+        <li class="item" id="main-navi-board">
+            <span>게시판</span>
+        </li>
+        <li class="item" id="main-navi-intro">
+            <span>업소소개</span>
+        </li>
+        <li class="item" id="main-navi-come">
+            <span>오시는길</span>
+        </li>
+    </ul>
+</nav>
