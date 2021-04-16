@@ -2,13 +2,14 @@
 <header class="main-header">
     <h3>힘찬 부동산</h3>
     <div class="fs-18">
-        <span class="icon phone"></span>010-9414-5127
+        <span><i class="icon phone"></i>010-9414-5127</span>
+        &nbsp;|&nbsp;
         <c:choose>
             <c:when test="${sessionScope.login eq null}">
-                <a class="btn sub-bg sign" href="/login">Login</a>
+                <a href="/login" class="sign-link">로그인</a>
             </c:when>
             <c:when test="${sessionScope.login ne null}">
-                <a class="btn sub-bg sign" href="/logout">Logout</a>
+                <a href="/logout" class="sign-link">로그아웃</a>
             </c:when>
         </c:choose>
     </div>

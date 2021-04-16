@@ -34,6 +34,7 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl:1.2'
 	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation 'org.jsoup:jsoup:1.11.3'
 
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	compileOnly 'org.projectlombok:lombok'

@@ -13,6 +13,7 @@
         <%@ include file="/WEB-INF/views/include/html_left_section.jspf" %>
         <section class="center-section">
             <h2>오시는길</h2>
+            <hr>
             <div class="map-wrap">
                 <div id="kakao-map"></div>
             </div>

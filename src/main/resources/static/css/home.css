@@ -1,0 +1,32 @@
+.news-item {
+    display: flex;
+    padding: 10px;
+}
+
+.news-img-wrap {
+    margin-right: 10px;
+}
+
+.news-img {
+    transition: 0.3s;
+}
+
+.news-img:hover {
+    transform: scale(1.1);
+}
+
+.news-title {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.news-title:hover {
+    color: #2E845E;
+}
+
+.news-info {
+    display: inline-block;
+    margin: 5px 0;
+}
