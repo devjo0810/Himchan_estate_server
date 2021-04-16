@@ -12,4 +12,33 @@
         SELECT now() FROM DUAL
     </select>
 
+    <resultMap id="BoardVO" type="site.himchan.estate.vo.BoardVO">
+        <result property="boardSq" column="BOARD_SQ"/>
+        <result property="boardTitle" column="BOARD_TITLE"/>
+        <result property="boardContent" column="BOARD_CONTENT"/>
+        <result property="boardCount" column="BOARD_COUNT"/>
+        <result property="boardCreateDt" column="BOARD_CREATE_DT"/>
+        <result property="boardModifyDt" column="BOARD_MODIFY_DT"/>
+        <result property="boardSecret" column="BOARD_SECRET"/>
+    </resultMap>
+
+    <select id="boardList" resultMap="BoardVO">
+        SELECT *
+        FROM BOARD
+    </select>
+
+    <insert id="boardWrite">
+        INSERT INTO
+        BOARD(
+
+        )
+        VALUE
+        (1,
+        #{boardTitle},
+        #{boardContent},
+        DEFAULT,
+        DEFAULT,
+        DEFAULT,
+        #{boardSecret})
+    </insert>
 </mapper>
