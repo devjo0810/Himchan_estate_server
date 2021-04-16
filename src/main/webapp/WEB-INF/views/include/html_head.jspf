@@ -2,6 +2,16 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/lib/css/dialog-mobile.css">
 <title>힘찬 부동산</title>
 <script src="/lib/js/jquery.min.js"></script>
+<script src="/lib/js/mcx-dialog.js"></script>
 <script src="/js/common.js"></script>
+<c:if test="${sessionScope.msg ne null}">
+    <script>
+        $(document).ready(function() {
+            mcxDialog.alert("${sessionScope.msg}");
+        });
+    </script>
+    <c:remove var="msg" scope="session" />
+</c:if>

@@ -6,9 +6,6 @@ $(document).ready(function() {
     $("#main-navi-board").on("click", function() {
         changePage("/board");
     });
-    $("#main-navi-intro").on("click", function() {
-        changePage("/intro");
-    });
     $("#main-navi-come").on("click", function() {
         changePage("/come");
     });

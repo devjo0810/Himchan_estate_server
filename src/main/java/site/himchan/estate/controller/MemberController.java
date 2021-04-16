@@ -9,6 +9,8 @@ import site.himchan.estate.service.MemberService;
 import site.himchan.estate.vo.LoginVO;
 import site.himchan.estate.vo.MemberVO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,12 +38,22 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
-    public ResponseEntity login(@RequestParam String id,
-                               @RequestParam String password) throws Exception {
+    public String login(@RequestParam String id,
+                        @RequestParam String password,
+                        HttpSession session) throws Exception {
+
         MemberVO member = new MemberVO();
         member.setMemberId(id);
         member.setMemberPwd(password);
-        return new ResponseEntity(memberService.login(member), HttpStatus.OK);
+        LoginVO login = memberService.login(member);
+
+        if(login != null) {
+            session.setAttribute("login", login);
+            session.setAttribute("msg", "로그인 성공");
+        } else {
+            session.setAttribute("msg", "로그인 실패");
+        }
+        return "redirect:/";
+//        return new ResponseEntity(memberService.login(member), HttpStatus.OK);
     }
 }

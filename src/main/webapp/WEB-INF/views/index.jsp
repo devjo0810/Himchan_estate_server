@@ -12,7 +12,6 @@
     <div class="main-content">
         <%@ include file="/WEB-INF/views/include/html_left_section.jspf" %>
         <section class="center-section">
-
         </section>
         <%@ include file="/WEB-INF/views/include/html_right_section.jspf" %>
     </div>

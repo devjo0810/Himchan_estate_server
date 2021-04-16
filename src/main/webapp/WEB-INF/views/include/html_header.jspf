@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <header class="main-header">
     <h3>힘찬 부동산</h3>
-    <div class="fs-18"><span class="icon phone"></span>010-9414-5127</div>
+    <div class="fs-18">
+        <span class="icon phone"></span>010-9414-5127
+        <c:choose>
+            <c:when test="${sessionScope.login eq null}">
+                <a class="btn sub-bg sign" href="/login">Login</a>
+            </c:when>
+            <c:when test="${sessionScope.login ne null}">
+                <a class="btn sub-bg sign" href="/logout">Logout</a>
+            </c:when>
+        </c:choose>
+    </div>
 </header>
 <section class="img-section">
     <img class="main-img" src="/images/main_tower_img.jpg" alt="메인 이미지">
