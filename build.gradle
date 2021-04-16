@@ -4,6 +4,13 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'war'
+
+war {
+	baseName = 'gradle'
+	version = '0.0.1'
+}
+
 group = 'site.himchan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
