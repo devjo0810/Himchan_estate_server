@@ -1,8 +1,13 @@
 
-#board-table tr{
-    vertical-align: auto;
+#board-table td{
     border-bottom: 1px solid black;
+    padding: 5px 0 5px;
     text-align: center;
+}
+
+#board-table th{
+    border-bottom: 1px solid black;
+    padding: 5px 0 5px;
 }
 
 #choosen{
@@ -23,4 +28,36 @@
     font-weight: 400;
     cursor: pointer;
     padding: 1px 6px;
+}
+
+.write-area{
+    width: 600px;
+    margin: 0 23px;
+}
+
+.write-area> span{
+    width: 57%;
+    display: inline-block;
+}
+.write-area>input[type="file"]{
+    width: 65%;
+    margin: 5px 0 0 0;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+
+.write-area>p{
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+
+.btn-area{
+    margin-left: 230px;
+    margin-top: 15px;
+}
+
+#boardTitle{
+    margin: 5px 0 5px 0;
+    width: 96.3%;
 }

@@ -23,22 +23,48 @@
     </resultMap>
 
     <select id="boardList" resultMap="BoardVO">
-        SELECT *
-        FROM BOARD
+        SELECT
+            BOARD_SQ,
+            BOARD_TITLE,
+            BOARD_CONTENT,
+            BOARD_COUNT,
+            BOARD_MODIFY_DT,
+            BOARD_SECRET
+        FROM (
+            SELECT
+                BOARD_SQ,
+                BOARD_TITLE,
+                BOARD_CONTENT,
+                BOARD_COUNT,
+                BOARD_MODIFY_DT,
+                BOARD_SECRET,
+                ROW_NUMBER() OVER(ORDER BY BOARD_SQ DESC) AS NUMROW
+                FROM BOARD
+        ) AS B
+        WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND (#{pageNo})*5
+    </select>
+
+    <select id="boardView" resultMap="BoardVO">
+        SELECT * FROM BOARD
+        WHERE BOARD_SQ = #{boardSq}
     </select>
 
     <insert id="boardWrite">
         INSERT INTO
         BOARD(
-
+            BOARD_TITLE,
+            BOARD_CONTENT,
+            BOARD_SECRET
         )
         VALUE
-        (1,
+        (
         #{boardTitle},
         #{boardContent},
-        DEFAULT,
-        DEFAULT,
-        DEFAULT,
         #{boardSecret})
     </insert>
+
+    <delete id="boardDelete">
+        DELETE FROM BOARD
+        WHERE BOARD_SQ = #{boardSq}
+    </delete>
 </mapper>

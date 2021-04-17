@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.himchan.estate.mapper.BoardMapper;
 import site.himchan.estate.vo.BoardVO;
+import site.himchan.estate.vo.PageVo;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,13 @@ public class BoardService {
         return boardMapper.boardWrite(boardvo);
     }
 
-    public List<BoardVO> boardList() {
-        return boardMapper.boardList();
+    public List<BoardVO> boardList(PageVo pageVo) {
+        return boardMapper.boardList(pageVo);
+    }
+
+    public BoardVO boardView(long boardSq) { return boardMapper.boardView(boardSq);
+    }
+
+    public int boardDelete(long boardSq) { return boardMapper.boardDelete(boardSq);
     }
 }

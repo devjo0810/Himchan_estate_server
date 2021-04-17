@@ -17,4 +17,6 @@ public class BoardVO {
     private Date boardCreateDt;
     private Date boardModifyDt;
     private String boardSecret;
+
+
 }

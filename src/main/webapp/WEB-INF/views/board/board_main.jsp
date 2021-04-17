@@ -29,8 +29,13 @@
                         <c:forEach var="list" items="${bList}" varStatus="status">
                     <tr>
                         <td>${status.count}</td>
-                        <td><a href="#">${list.boardTitle}</a></td>
-                        <td>${list.boardModifyDt}</td>
+                        <td>
+                            <c:url var="view" value="/board/view">
+                                <c:param name="boardSq" value="${list.boardSq}"/>
+                            </c:url>
+                            <a href="${view}">${list.boardTitle}</a>
+                        </td>
+                        <td><fmt:formatDate value="${list.boardModifyDt}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.boardCount}</td>
                         <td>${list.boardSecret}</td>
                     </tr>
@@ -49,7 +54,7 @@
 
                             <c:if test="${sessionScope.login ne null}">
                             <td style="text-align: right;">
-                                <a href="/writeForm" style="border: 1px solid black;">
+                                <a href="/board/writeForm" style="border: 1px solid black;">
                                     <button>글쓰기</button>
                                 </a>
                             </td>
