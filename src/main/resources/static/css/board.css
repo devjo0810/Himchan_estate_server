@@ -10,15 +10,7 @@
     padding: 5px 0 5px;
 }
 
-#choosen{
-    font-size: 20px;
-}
-
-#etc-btn{
-    margin-top: 30px;
-}
-
-.Btn{
+.disable{
     border: 0 none;
     background: transparent;
     outline: 0;
@@ -26,8 +18,28 @@
     font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
     color: #444;
     font-weight: 400;
+    padding: 1px 6px;
+}
+
+.able{
+    border: 0 none;
+    background: transparent;
+    outline: 0;
+    font-size: 14px;
+    font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
+    color: #D3D3D3;
+    font-weight: 400;
     cursor: pointer;
     padding: 1px 6px;
+}
+
+#etc-btn{
+    margin-top: 30px;
+}
+
+#etc-btn tbody>tr>td{
+    padding-top: 15px;
+    height: 40px;
 }
 
 .write-area{

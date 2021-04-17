@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
     <link rel="stylesheet" href="/css/home.css">
+    <script src="/js/board.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>

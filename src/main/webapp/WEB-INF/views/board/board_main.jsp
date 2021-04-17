@@ -4,6 +4,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
+    <script src="/js/board.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -32,14 +33,22 @@
                         <td>
                             <c:url var="view" value="/board/view">
                                 <c:param name="boardSq" value="${list.boardSq}"/>
+                                <c:param name="page" value="${ pv.currentPage}"/>
                             </c:url>
-                            <a href="${view}">${list.boardTitle}</a>
+                            <a href="${view}" class="boardView">${list.boardTitle}</a>
                         </td>
                         <td><fmt:formatDate value="${list.boardModifyDt}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.boardCount}</td>
                         <td>${list.boardSecret}</td>
                     </tr>
                         </c:forEach>
+                    </c:if>
+                    <c:if test="${empty bList}">
+                        <tr>
+                            <td colspan="5">
+                                <b>조회된 내역이 없습니다.</b>
+                            </td>
+                        </tr>
                     </c:if>
                 </tbody>
 
@@ -48,8 +57,8 @@
                     <thead>
                         <tr>
                             <td style="text-align: left;">
-                                <input type="text" placeholder="검색어를 입력해주세요." />
-                                <button style="border: 1px solid black; padding-top: 0px;">조회</button>
+                                <input type="text" placeholder="검색어를 입력해주세요." name="searchValue" id="searchValue"/>
+                                <button style="border: 1px solid black; padding-top: 0px;" id="searchBtn">조회</button>
                             </td>
 
                             <c:if test="${sessionScope.login ne null}">
@@ -62,21 +71,43 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:if test="${!empty bList}">
                         <tr align="center">
                             <td colspan="2">
-                                <a href="" class="Btn">&lt;</a>
+                                <c:if test="${ pv.currentPage <= 1}">
+                                    <a class="disable">&lt;</a> &nbsp;
+                                </c:if>
+                                <c:if test="${ pv.currentPage > 1}">
+                                    <c:url var="before" value="/board">
+                                        <c:param name="page" value="${ pv.currentPage - 1}"/>
+                                    </c:url>
+                                    <a href="${ before}" class="able">&lt;</a> &nbsp;
+                                </c:if>
 
-                                <span id="choosen">1</span>
+                                <c:forEach var="p" begin="${ pv.startPage}" end="${ pv.endPage}">
+                                    <c:if test="${ p eq pv.currentPage}">
+                                        <a class="disable">${p}</a>
+                                    </c:if>
+                                    <c:if test="${ p ne pv.currentPage}">
+                                        <c:url var="pagination" value="/board">
+                                            <c:param name="page" value="${ p }"/>
+                                        </c:url>
+                                        <a href="${ pagination}" class="able">${p}</a>
+                                    </c:if>
+                                </c:forEach>
 
-                                <a href="#" class="Btn">2</a>
-                                <a href="#" class="Btn">3</a>
-                                <a href="#" class="Btn">4</a>
-                                <a href="#" class="Btn">5</a>
-                                <a href="#" class="Btn">6</a>
-
-                                <a href="#" class="Btn">&gt;</a>
+                                <c:if test="${ pv.currentPage >= pv.maxPage}">
+                                    &nbsp; <a class="disable">&gt;</a>
+                                </c:if>
+                                <c:if test="${ pv.currentPage < pv.maxPage}">
+                                    <c:url var="after" value="/board">
+                                        <c:param name="page" value="${ pv.currentPage + 1 }"/>
+                                    </c:url>
+                                    &nbsp; <a href="${ after}" class="able">&gt;</a>
+                                </c:if>
                             </td>
                         </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </table>

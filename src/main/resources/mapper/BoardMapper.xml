@@ -22,32 +22,66 @@
         <result property="boardSecret" column="BOARD_SECRET"/>
     </resultMap>
 
-    <select id="boardList" resultMap="BoardVO">
-        SELECT
-            BOARD_SQ,
-            BOARD_TITLE,
-            BOARD_CONTENT,
-            BOARD_COUNT,
-            BOARD_MODIFY_DT,
-            BOARD_SECRET
-        FROM (
-            SELECT
-                BOARD_SQ,
-                BOARD_TITLE,
-                BOARD_CONTENT,
-                BOARD_COUNT,
-                BOARD_MODIFY_DT,
-                BOARD_SECRET,
-                ROW_NUMBER() OVER(ORDER BY BOARD_SQ DESC) AS NUMROW
-                FROM BOARD
-        ) AS B
-        WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND (#{pageNo})*5
+    <select id="getBoardCount" resultType="_int">
+        SELECT COUNT(*)
+        FROM BOARD
+        WHERE BOARD_SECRET = 'Y'
     </select>
+
+    <select id="boardList" resultMap="BoardVO">
+        SELECT *
+        FROM BOARD
+        WHERE BOARD_SECRET = 'Y'
+        ORDER BY BOARD_SQ DESC
+    </select>
+
+    <select id="searchList" resultMap="BoardVO">
+        SELECT *
+        FROM BOARD
+        WHERE BOARD_SECRET = 'Y'
+            AND BOARD_TITLE LIKE CONCAT('%',#{sVal},'%')
+        ORDER BY BOARD_SQ DESC
+    </select>
+
+    <select id="getSearchCount" resultType="_int">
+        SELECT COUNT(*)
+        FROM BOARD
+        WHERE BOARD_SECRET = 'Y'
+            AND BOARD_TITLE LIKE CONCAT('%',#{sVal},'%')
+        ORDER BY BOARD_SQ DESC
+    </select>
+<!--    <select id="boardList" resultMap="BoardVO">-->
+<!--        SELECT-->
+<!--            BOARD_SQ,-->
+<!--            BOARD_TITLE,-->
+<!--            BOARD_CONTENT,-->
+<!--            BOARD_COUNT,-->
+<!--            BOARD_MODIFY_DT,-->
+<!--            BOARD_SECRET-->
+<!--        FROM (-->
+<!--            SELECT-->
+<!--                BOARD_SQ,-->
+<!--                BOARD_TITLE,-->
+<!--                BOARD_CONTENT,-->
+<!--                BOARD_COUNT,-->
+<!--                BOARD_MODIFY_DT,-->
+<!--                BOARD_SECRET,-->
+<!--                ROW_NUMBER() OVER(ORDER BY BOARD_SQ DESC) AS NUMROW-->
+<!--                FROM BOARD-->
+<!--        ) AS B-->
+<!--        WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND (#{pageNo})*5-->
+<!--    </select>-->
 
     <select id="boardView" resultMap="BoardVO">
         SELECT * FROM BOARD
         WHERE BOARD_SQ = #{boardSq}
     </select>
+
+    <update id="viewCount">
+        UPDATE BOARD
+        SET BOARD_COUNT = BOARD_COUNT + 1
+        WHERE BOARD_SQ = #{boardSq}
+    </update>
 
     <insert id="boardWrite">
         INSERT INTO

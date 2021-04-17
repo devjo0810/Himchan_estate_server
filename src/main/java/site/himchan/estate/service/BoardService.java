@@ -1,6 +1,7 @@
 package site.himchan.estate.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import site.himchan.estate.mapper.BoardMapper;
 import site.himchan.estate.vo.BoardVO;
@@ -26,13 +27,44 @@ public class BoardService {
         return boardMapper.boardWrite(boardvo);
     }
 
-    public List<BoardVO> boardList(PageVo pageVo) {
-        return boardMapper.boardList(pageVo);
+    public List<BoardVO> boardList(PageVo pv) {
+
+        int offset = (pv.getCurrentPage() -1) * pv.getBoardLimit();
+
+        RowBounds rBounds = new RowBounds(offset, pv.getBoardLimit());
+
+        return boardMapper.boardList(null, rBounds);
     }
 
-    public BoardVO boardView(long boardSq) { return boardMapper.boardView(boardSq);
+    public BoardVO boardView(long boardSq) {
+
+        int result = boardMapper.viewCount(boardSq);
+
+        BoardVO b = null;
+        if(result > 0){
+            b = boardMapper.boardView(boardSq);
+        }
+        return b;
     }
 
     public int boardDelete(long boardSq) { return boardMapper.boardDelete(boardSq);
     }
+
+    public int getBoardCount() { return boardMapper.getBoardCount();
+    }
+
+    public int getSearchCount(String sVal) {
+        System.out.println("service : " + boardMapper.getSearchCount(sVal));
+        return boardMapper.getSearchCount(sVal);
+    }
+
+    public List<BoardVO> searchList(String sVal, PageVo pv) {
+
+        int offset = (pv.getCurrentPage() -1) * pv.getBoardLimit();
+
+        RowBounds rBounds = new RowBounds(offset, pv.getBoardLimit());
+
+        return boardMapper.searchList(sVal, rBounds);
+    }
+
 }

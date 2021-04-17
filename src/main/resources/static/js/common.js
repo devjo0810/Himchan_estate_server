@@ -39,48 +39,7 @@ $(document).ready(function() {
         }
     }
 
-    $("#enroll").on('click', function() {
-        var $frm = $(".write-area :input");
-        var param = $frm.serialize();
 
-        $.ajax({
-            url: "/board/write",
-            dataType: "json",
-            type: "POST",
-            data: param,
-            success: function(data, textStatus, jqXHR) {
-
-                alert("메세지:" + data.check);
-
-                location.href = "/board";
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert("작성 실패");
-            }
-        });
-    });
-
-    $("#delete").on("click", function() {
-
-        var sq = $("#delBtn").val();
-
-        $.ajax({
-            url: "/board/delete",
-            dataType: "json",
-            type: "POST",
-            data: {
-                sq: sq
-            },
-            success: function(data) {
-                alert("메세지 : " + data.check);
-
-                location.href = "/board";
-            },
-            error: function() {
-                alert("삭제 실패");
-            }
-        });
-    });
 });
 
 function spinStart() {

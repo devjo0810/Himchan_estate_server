@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
     <link rel="stylesheet" href="/css/home.css">
+    <script src="/js/board.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -26,7 +27,7 @@
                 </select>
                 <hr>
                 <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력해 주세요.">
-                <textarea placeholder="글을 입력해 주세요." cols="80" rows="6" name="boardContent"></textarea>
+                <textarea placeholder="글을 입력해 주세요." cols="80" rows="6" name="boardContent" id="boardContent"></textarea>
 
                 <div class="btn-area">
                     <a href="<%= request.getHeader("referer") %>"><button class='btn'>취소</button></a>

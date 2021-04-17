@@ -1,6 +1,7 @@
 package site.himchan.estate.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 import site.himchan.estate.vo.BoardVO;
 import site.himchan.estate.vo.PageVo;
@@ -16,9 +17,17 @@ public interface BoardMapper {
 
     int boardWrite(BoardVO boardvo);
 
-    List<BoardVO> boardList(PageVo pageVo);
+    List<BoardVO> boardList(PageVo pv, RowBounds rBounds);
 
     BoardVO boardView(long boardSq);
 
     int boardDelete(long boardSq);
+
+    int viewCount(long boardSq);
+
+    int getBoardCount();
+
+    List<BoardVO> searchList(String sVal, RowBounds rBounds);
+
+    int getSearchCount(String sVal);
 }

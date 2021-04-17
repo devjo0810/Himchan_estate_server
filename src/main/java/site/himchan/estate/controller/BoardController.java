@@ -2,12 +2,15 @@ package site.himchan.estate.controller;
 
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import site.himchan.estate.service.BoardService;
 import site.himchan.estate.vo.BoardVO;
 import site.himchan.estate.vo.PageVo;
+import site.himchan.estate.vo.Pagination;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,40 +23,33 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public String board(Model model, PageVo pageVo) {
+    public String board(Model model,
+                        @RequestParam(value="page", required=false) Integer page,
+                        @RequestParam(value="sVal", required = false) String sVal) {
 
-        int page = 1;
-        int totalCnt = 0;
+        int currentPage = 1;
 
-        if(pageVo.getPageNo() == 0){
-            pageVo.setPageNo(page);
+        if(page != null){
+            currentPage = page;
         }
 
-        List<BoardVO> bList = boardService.boardList(pageVo);
+        PageVo pv = null;
+        List<BoardVO> bList = null;
+        if(sVal != null){
+            int listCount = boardService.getSearchCount(sVal);
+            pv = Pagination.getPageInfo(currentPage, listCount);
+            bList = boardService.searchList(sVal,pv);
+        } else {
+            int listCount = boardService.getBoardCount();
+            pv = Pagination.getPageInfo(currentPage, listCount);
+            bList = boardService.boardList(pv);
+        }
 
         model.addAttribute("bList", bList);
-        model.addAttribute("page", page);
+        model.addAttribute("pv", pv);
 
         return "board/board_main";
     }
-
-    /*@RequestMapping("/list")
-    @ResponseBody
-    public String list() {
-        List<Map<String, Object>> map = boardService.findAll();
-        return new Gson().toJson(map);
-    }
-
-    @RequestMapping("/test")
-    @ResponseBody
-    public String test() {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("test1", "test1");
-        map.put("test2", "test2");
-        map.put("test3", "test3");
-
-        return new Gson().toJson(map);
-    }*/
 
     @RequestMapping("/writeForm")
     public String boardWriteForm(){
@@ -62,43 +58,44 @@ public class BoardController {
 
     @PostMapping("/write")
     @ResponseBody
-    public String boardWrite(BoardVO boardvo){
+    public ResponseEntity boardWrite(BoardVO boardvo){
 
-        Map<String, String> msg = new HashMap<String, String>();
+//        Map<String, String> msg = new HashMap<String, String>();
+//
+//        int result = boardService.boardWrite(boardvo);
+//        msg.put("check", (result > 0)? "작성 완료":"작성 실패");
+//
+//        System.out.println("callbackMsg" + msg);
+//        return new Gson().toJson(msg);
 
-        int result = boardService.boardWrite(boardvo);
-        msg.put("check", (result > 0)? "작성 완료":"작성 실패");
-
-        System.out.println("callbackMsg" + msg);
-        return new Gson().toJson(msg);
+        return new ResponseEntity(boardService.boardWrite(boardvo), HttpStatus.OK);
 
     }
 
     @RequestMapping("/view")
-    public String boardView(@RequestParam("boardSq")long boardSq, Model m){
+    public String boardView( Model m, @RequestParam("boardSq")long boardSq,
+                                        @RequestParam("page")int page){
 
         BoardVO board = boardService.boardView(boardSq);
 
         m.addAttribute("board", board);
+        m.addAttribute("page", page);
 
         return "board/board_view";
     }
 
     @PostMapping("/delete")
     @ResponseBody
-    public String boardDelete(@RequestParam("sq") long boardSq){
+    public ResponseEntity boardDelete(@RequestParam("sq") long boardSq){
 
-        Map<String, String> msg = new HashMap<String, String>();
+//        Map<String, String> msg = new HashMap<String, String>();
+//
+//        int result = boardService.boardDelete(boardSq);
+//        msg.put("check", (result > 0)? "삭제 완료":"삭제 실패");
+//
+//        System.out.println("callbackMsg" + msg);
+//        return new Gson().toJson(msg);
 
-//        Map<String, Long> map = new HashMap<String, Long>();
-//        map.put("boardSq", boardSq);
-
-        System.out.println("boardSq : " + boardSq);
-        int result = boardService.boardDelete(boardSq);
-        msg.put("check", (result > 0)? "삭제 완료":"삭제 실패");
-
-        System.out.println("callbackMsg" + msg);
-        return new Gson().toJson(msg);
+        return new ResponseEntity(boardService.boardDelete(boardSq), HttpStatus.OK);
     }
-
 }
