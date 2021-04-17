@@ -18,11 +18,10 @@ $(document).ready(function() {
         var input = $("#input-calc").val();
         var $result = $("#result-calc");
 
-        if(calcVal == 1) {
-            $result.text( (input / 0.3025).toFixed(2) );
-        }
-        else {
-            $result.text( (input * 0.3025).toFixed(2) );
+        if (calcVal == 1) {
+            $result.text((input / 0.3025).toFixed(2));
+        } else {
+            $result.text((input * 0.3025).toFixed(2));
         }
     });
 
@@ -31,58 +30,63 @@ $(document).ready(function() {
     }
 
     function changeCalcAreaLabel(val) {
-        if(val == 1) {
+        if (val == 1) {
             $("#input-calc-label").text("평");
             $("#result-calc-label").text("㎡");
-        }
-        else {
+        } else {
             $("#input-calc-label").text("㎡");
             $("#result-calc-label").text("평");
         }
     }
 
-    $("#enroll").on('click', function(){
+    $("#enroll").on('click', function() {
         var $frm = $(".write-area :input");
         var param = $frm.serialize();
 
         $.ajax({
-            url : "/board/write",
+            url: "/board/write",
             dataType: "json",
             type: "POST",
-            data : param,
-            success: function(data, textStatus, jqXHR)
-            {
+            data: param,
+            success: function(data, textStatus, jqXHR) {
 
-                alert("메세지:"+data.check);
+                alert("메세지:" + data.check);
 
                 location.href = "/board";
             },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
+            error: function(jqXHR, textStatus, errorThrown) {
                 alert("작성 실패");
             }
         });
     });
 
-    $("#delete").on("click", function(){
+    $("#delete").on("click", function() {
 
         var sq = $("#delBtn").val();
 
         $.ajax({
-            url : "/board/delete",
+            url: "/board/delete",
             dataType: "json",
             type: "POST",
-            data : {
-                sq : sq
+            data: {
+                sq: sq
             },
-            success : function(data){
+            success: function(data) {
                 alert("메세지 : " + data.check);
 
                 location.href = "/board";
             },
-            error: function(){
+            error: function() {
                 alert("삭제 실패");
             }
         });
     });
 });
+
+function spinStart() {
+    $("#global-loader").show();
+}
+
+function spinStop() {
+    $("#global-loader").hide();
+}

@@ -4,6 +4,13 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
+    <style>
+        #kakao-map {
+            width: 100%;
+            height: 500px;
+            border: 1px solid rgb(131, 131, 131);
+        }
+    </style>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>

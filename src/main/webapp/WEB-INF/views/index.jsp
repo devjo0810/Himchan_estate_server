@@ -26,7 +26,7 @@
                         </a>
                         <br>
                         <span class="news-info">${news.info}</span>
-                        <p>${news.content}</p>
+                        <p class="news-content">${news.content}</p>
                     </div>
                 </div>
             </c:forEach>
@@ -34,5 +34,6 @@
         <%@ include file="/WEB-INF/views/include/html_right_section.jspf" %>
     </div>
     <%@ include file="/WEB-INF/views/include/html_footer.jspf" %>
+    <%@ include file="/WEB-INF/views/include/html_loader.jspf" %>
 </body>
 </html>

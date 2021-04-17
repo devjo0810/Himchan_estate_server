@@ -9,6 +9,7 @@
 
 .news-img {
     transition: 0.3s;
+    border: 1px solid rgb(131, 131, 131);
 }
 
 .news-img:hover {
@@ -29,4 +30,9 @@
 .news-info {
     display: inline-block;
     margin: 5px 0;
+    word-spacing: 5px;
+}
+
+.news-content {
+    font-size: 13px;
 }
