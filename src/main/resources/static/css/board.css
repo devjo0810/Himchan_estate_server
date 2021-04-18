@@ -48,9 +48,10 @@
 }
 
 .write-area> span{
-    width: 57%;
+    width: 65%;
     display: inline-block;
 }
+
 .write-area>input[type="file"]{
     width: 65%;
     margin: 5px 0 0 0;
@@ -72,4 +73,9 @@
 #boardTitle{
     margin: 5px 0 5px 0;
     width: 96.3%;
+}
+
+#file-area{
+    display: inline-block;
+    width: 65%;
 }

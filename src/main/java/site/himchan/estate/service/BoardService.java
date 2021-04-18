@@ -28,18 +28,13 @@ public class BoardService {
     }
 
     public List<BoardVO> boardList(PageVo pv) {
-
         int offset = (pv.getCurrentPage() -1) * pv.getBoardLimit();
-
         RowBounds rBounds = new RowBounds(offset, pv.getBoardLimit());
-
         return boardMapper.boardList(null, rBounds);
     }
 
     public BoardVO boardView(long boardSq) {
-
         int result = boardMapper.viewCount(boardSq);
-
         BoardVO b = null;
         if(result > 0){
             b = boardMapper.boardView(boardSq);
@@ -53,18 +48,14 @@ public class BoardService {
     public int getBoardCount() { return boardMapper.getBoardCount();
     }
 
-    public int getSearchCount(String sVal) {
-        System.out.println("service : " + boardMapper.getSearchCount(sVal));
-        return boardMapper.getSearchCount(sVal);
+    public int getSearchCount(Map<String, String> map) {
+        return boardMapper.getSearchCount(map);
     }
 
-    public List<BoardVO> searchList(String sVal, PageVo pv) {
-
+    public List<BoardVO> searchList(Map<String, String> map, PageVo pv) {
         int offset = (pv.getCurrentPage() -1) * pv.getBoardLimit();
-
         RowBounds rBounds = new RowBounds(offset, pv.getBoardLimit());
-
-        return boardMapper.searchList(sVal, rBounds);
+        return boardMapper.searchList(map, rBounds);
     }
 
 }

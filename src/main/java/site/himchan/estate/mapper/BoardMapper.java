@@ -27,7 +27,7 @@ public interface BoardMapper {
 
     int getBoardCount();
 
-    List<BoardVO> searchList(String sVal, RowBounds rBounds);
+    List<BoardVO> searchList(Map<String, String> map, RowBounds rBounds);
 
-    int getSearchCount(String sVal);
+    int getSearchCount(Map<String, String> map);
 }

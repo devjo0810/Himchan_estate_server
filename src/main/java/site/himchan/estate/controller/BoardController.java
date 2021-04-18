@@ -7,14 +7,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import site.himchan.estate.service.BoardService;
+import site.himchan.estate.vo.BoardFileVO;
 import site.himchan.estate.vo.BoardVO;
 import site.himchan.estate.vo.PageVo;
 import site.himchan.estate.vo.Pagination;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 @RequestMapping("/board")
@@ -25,7 +29,8 @@ public class BoardController {
     @GetMapping
     public String board(Model model,
                         @RequestParam(value="page", required=false) Integer page,
-                        @RequestParam(value="sVal", required = false) String sVal) {
+                        @RequestParam(value="sVal", required = false) String sVal,
+                        @RequestParam(value="sCate", required = false) String sCate) {
 
         int currentPage = 1;
 
@@ -35,10 +40,18 @@ public class BoardController {
 
         PageVo pv = null;
         List<BoardVO> bList = null;
+        Map<String, String> map = new HashMap<String, String>();
         if(sVal != null){
-            int listCount = boardService.getSearchCount(sVal);
+            if(sCate.equals("title")){
+                map.put("title", sVal);
+                map.put("content", null);
+            } else if(sCate.equals("content")){
+                map.put("title", null);
+                map.put("content", sVal);
+            }
+            int listCount = boardService.getSearchCount(map);
             pv = Pagination.getPageInfo(currentPage, listCount);
-            bList = boardService.searchList(sVal,pv);
+            bList = boardService.searchList(map,pv);
         } else {
             int listCount = boardService.getBoardCount();
             pv = Pagination.getPageInfo(currentPage, listCount);
@@ -60,6 +73,7 @@ public class BoardController {
     @ResponseBody
     public ResponseEntity boardWrite(BoardVO boardvo){
 
+
 //        Map<String, String> msg = new HashMap<String, String>();
 //
 //        int result = boardService.boardWrite(boardvo);
@@ -67,8 +81,43 @@ public class BoardController {
 //
 //        System.out.println("callbackMsg" + msg);
 //        return new Gson().toJson(msg);
-
         return new ResponseEntity(boardService.boardWrite(boardvo), HttpStatus.OK);
+    }
+    @PostMapping("/uploadFile")
+    @ResponseBody
+    public void uploadFile(MultipartHttpServletRequest multi, HttpServletRequest request){
+
+        String root = request.getSession().getServletContext().getRealPath("resources");
+        String path = root + "\\uploadFiles";
+        String fileOriginNm = "";
+
+
+        File folder = new File(path);
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+
+        String extension = fileOriginNm.substring(fileOriginNm.lastIndexOf("."));
+
+        UUID uuid = UUID.randomUUID();
+        String fileNm = uuid.toString() + extension;
+
+        String filePath = folder + "\\" + fileNm;
+
+        Iterator<String> files = multi.getFileNames();
+        while (files.hasNext()){
+            String uploadFile = files.next();
+            MultipartFile mFile = multi.getFile(uploadFile);
+            fileOriginNm = mFile.getOriginalFilename();
+
+            try{
+                mFile.transferTo(new File(filePath));
+            } catch (IllegalStateException e){
+                e.printStackTrace();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
 
     }
 

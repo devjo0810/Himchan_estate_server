@@ -18,8 +18,18 @@
             <hr>
 
             <div class="write-area">
-                작성자 : <span name="memberId">${sessionScope.login.memberId}</span> 작성 날짜 :
-                <input type="file" name="filePath">
+                <!--
+                <span><a href="#this" class="btn" id="addFile">파일추가</a></span>
+                <div id="file-area">
+                    <p>
+                        <input type="file" name="fileOriginNm">
+                        <a href="" class="btn" id="fileDelete" name="fileDelete">삭제</a>
+                    </p>
+                </div>
+                -->
+                <form id="uploadForm" action="" method="post" encType="multipart/form-data">
+                    <input type="file" name="fileOriginNm" multiple>
+                </form>
                 공개 여부 :
                 <select name="boardSecret">
                     <option value="Y">전체공개</option>

@@ -39,7 +39,12 @@
         SELECT *
         FROM BOARD
         WHERE BOARD_SECRET = 'Y'
-            AND BOARD_TITLE LIKE CONCAT('%',#{sVal},'%')
+        <if test="title != null">
+            AND BOARD_TITLE LIKE CONCAT('%',#{title},'%')
+        </if>
+        <if test="content != null">
+            AND BOARD_CONTENT LIKE CONCAT('%',#{content},'%')
+        </if>
         ORDER BY BOARD_SQ DESC
     </select>
 
@@ -47,30 +52,14 @@
         SELECT COUNT(*)
         FROM BOARD
         WHERE BOARD_SECRET = 'Y'
-            AND BOARD_TITLE LIKE CONCAT('%',#{sVal},'%')
+        <if test="title != null">
+            AND BOARD_TITLE LIKE CONCAT('%',#{title},'%')
+        </if>
+        <if test="content != null">
+            AND BOARD_CONTENT LIKE CONCAT('%',#{content},'%')
+        </if>
         ORDER BY BOARD_SQ DESC
     </select>
-<!--    <select id="boardList" resultMap="BoardVO">-->
-<!--        SELECT-->
-<!--            BOARD_SQ,-->
-<!--            BOARD_TITLE,-->
-<!--            BOARD_CONTENT,-->
-<!--            BOARD_COUNT,-->
-<!--            BOARD_MODIFY_DT,-->
-<!--            BOARD_SECRET-->
-<!--        FROM (-->
-<!--            SELECT-->
-<!--                BOARD_SQ,-->
-<!--                BOARD_TITLE,-->
-<!--                BOARD_CONTENT,-->
-<!--                BOARD_COUNT,-->
-<!--                BOARD_MODIFY_DT,-->
-<!--                BOARD_SECRET,-->
-<!--                ROW_NUMBER() OVER(ORDER BY BOARD_SQ DESC) AS NUMROW-->
-<!--                FROM BOARD-->
-<!--        ) AS B-->
-<!--        WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND (#{pageNo})*5-->
-<!--    </select>-->
 
     <select id="boardView" resultMap="BoardVO">
         SELECT * FROM BOARD

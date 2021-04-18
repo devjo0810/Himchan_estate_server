@@ -57,6 +57,10 @@
                     <thead>
                         <tr>
                             <td style="text-align: left;">
+                                <select name="searchCate" id="searchCate">
+                                    <option value="title">제목</option>
+                                    <option value="content">내용</option>
+                                </select>
                                 <input type="text" placeholder="검색어를 입력해주세요." name="searchValue" id="searchValue"/>
                                 <button style="border: 1px solid black; padding-top: 0px;" id="searchBtn">조회</button>
                             </td>
