@@ -1,0 +1,81 @@
+
+#board-table td{
+    border-bottom: 1px solid black;
+    padding: 5px 0 5px;
+    text-align: center;
+}
+
+#board-table th{
+    border-bottom: 1px solid black;
+    padding: 5px 0 5px;
+}
+
+.disable{
+    border: 0 none;
+    background: transparent;
+    outline: 0;
+    font-size: 14px;
+    font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
+    color: #444;
+    font-weight: 400;
+    padding: 1px 6px;
+}
+
+.able{
+    border: 0 none;
+    background: transparent;
+    outline: 0;
+    font-size: 14px;
+    font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
+    color: #D3D3D3;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 1px 6px;
+}
+
+#etc-btn{
+    margin-top: 30px;
+}
+
+#etc-btn tbody>tr>td{
+    padding-top: 15px;
+    height: 40px;
+}
+
+.write-area{
+    width: 600px;
+    margin: 0 23px;
+}
+
+.write-area> span{
+    width: 65%;
+    display: inline-block;
+}
+
+.write-area>input[type="file"]{
+    width: 65%;
+    margin: 5px 0 0 0;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+
+.write-area>p{
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+
+.btn-area{
+    margin-left: 230px;
+    margin-top: 15px;
+}
+
+#boardTitle{
+    margin: 5px 0 5px 0;
+    width: 96.3%;
+}
+
+#file-area{
+    display: inline-block;
+    width: 65%;
+}

@@ -4,7 +4,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
-    <script src="/js/board.js"></script>
+    <script src="/resources/js/board.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -22,7 +22,7 @@
                         <th width="60%">Title</th>
                         <th width="15%">Date</th>
                         <th width="5%">Count</th>
-                        <th width="15%">File</th>
+                        <%-- <th width="15%">File</th> --%>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,7 @@
                         </td>
                         <td><fmt:formatDate value="${list.boardModifyDt}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.boardCount}</td>
-                        <td>${list.boardSecret}</td>
+                        <%-- <td>${list.boardSecret}</td> --%>
                     </tr>
                         </c:forEach>
                     </c:if>
@@ -65,13 +65,11 @@
                                 <button style="border: 1px solid black; padding-top: 0px;" id="searchBtn">조회</button>
                             </td>
 
-                            <c:if test="${sessionScope.login ne null}">
                             <td style="text-align: right;">
                                 <a href="/board/writeForm" style="border: 1px solid black;">
                                     <button>글쓰기</button>
                                 </a>
                             </td>
-                            </c:if>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,6 +1,7 @@
 package site.himchan.estate.controller;
 
 import com.google.gson.Gson;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import site.himchan.estate.vo.PageVo;
 import site.himchan.estate.vo.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -83,6 +85,21 @@ public class BoardController {
 //        return new Gson().toJson(msg);
         return new ResponseEntity(boardService.boardWrite(boardvo), HttpStatus.OK);
     }
+
+    @PostMapping("/upload")
+    public String upload(BoardVO boardVo,
+                         List<MultipartFile> files,
+                         HttpServletRequest request) throws Exception {
+
+        long result = boardService.boardWrite(boardVo);
+        if(result > 0 && files.size() > 0) {
+            boardService.fileUpload(files, request, result);
+        }
+
+        return "redirect:/board";
+    }
+
+
     @PostMapping("/uploadFile")
     @ResponseBody
     public void uploadFile(MultipartHttpServletRequest multi, HttpServletRequest request){
@@ -126,9 +143,11 @@ public class BoardController {
                                         @RequestParam("page")int page){
 
         BoardVO board = boardService.boardView(boardSq);
+        List<BoardFileVO> fileList = boardService.findByBoardSq(boardSq);
 
         m.addAttribute("board", board);
         m.addAttribute("page", page);
+        m.addAttribute("files", fileList);
 
         return "board/board_view";
     }
@@ -147,4 +166,5 @@ public class BoardController {
 
         return new ResponseEntity(boardService.boardDelete(boardSq), HttpStatus.OK);
     }
+
 }

@@ -29,12 +29,14 @@ spring:
       enabled: true
       force: true
   mvc:
+    static-path-pattern: /resources/**
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  resources:
+    static-locations: /resources/
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://3.36.171.96:3306/himchan?characterEncoding=UTF-8?serverTimeZone=Asia/Seoul
     username: root
     password: test1234
-

@@ -72,7 +72,7 @@
         WHERE BOARD_SQ = #{boardSq}
     </update>
 
-    <insert id="boardWrite">
+    <insert id="boardWrite" useGeneratedKeys="true" keyProperty="boardSq">
         INSERT INTO
         BOARD(
             BOARD_TITLE,
@@ -81,9 +81,10 @@
         )
         VALUE
         (
-        #{boardTitle},
-        #{boardContent},
-        #{boardSecret})
+            #{boardTitle},
+            #{boardContent},
+            #{boardSecret}
+        )
     </insert>
 
     <delete id="boardDelete">

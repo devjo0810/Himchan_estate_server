@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <header class="main-header">
-    <img src="/images/hori-logo.png" class="logo-img" />
+    <img src="/resources/images/hori-logo.png" class="logo-img" />
     <%-- <h3>힘찬 부동산</h3> --%>
     <div class="fs-18">
         <span><i class="icon phone"></i>010-9414-5127</span>
@@ -16,6 +16,6 @@
     </div>
 </header>
 <section class="img-section">
-    <img class="main-img" src="/images/main_tower_img.jpg" alt="메인 이미지">
+    <img class="main-img" src="/resources/images/main_tower_img.jpg" alt="메인 이미지">
     <span class="main-title">안녕하세요 힘찬 부동산입니다</span>
 </section>

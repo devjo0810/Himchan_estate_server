@@ -15,5 +15,6 @@ public class BoardFileVO {
     private String fileOriginNm;
     private String fileNm;
     private Date fileCreateDt;
+    private long fileSize;
     private long boardSq;
 }

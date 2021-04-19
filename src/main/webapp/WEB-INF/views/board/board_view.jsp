@@ -4,8 +4,8 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
-    <link rel="stylesheet" href="/css/home.css">
-    <script src="/js/board.js"></script>
+    <link rel="stylesheet" href="/resources/css/home.css">
+    <script src="/resources/js/board.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -19,7 +19,17 @@
 
                 <div class="write-area">
                     제목 : <span name="boardTitle">${board.boardTitle}</span> 작성 날짜 : <fmt:formatDate value="${board.boardModifyDt}" pattern="yyyy.MM.dd"/>
-                    <p>첨부파일 : <a href="#" download="">TestFile.zip</a></p>
+                    <p>첨부파일
+                        <c:if test="${fn:length(files) > 0}">
+                            <c:forEach var="file" items="${files}">
+                                <br />
+                                <a href="${contextPath}/resources/uploadFiles/${file.fileNm}" download="${file.fileOriginNm}">${file.fileOriginNm} size:${file.fileSize}(byte)</a>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${fn:length(files) <= 0}">
+                            없음
+                        </c:if>
+                    </p>
                     <hr>
                     <textarea cols="80" style="min-height: 133.6px;" readonly>${board.boardContent}</textarea>
                     <input type="hidden" value="${board.boardSq}" id="delBtn">

@@ -25,13 +25,20 @@ public class CrawlerService {
         for(Element element : elements) {
             NewsVO news = new NewsVO();
             Element link = element.select(".wrap_thumb a").first();
-            news.setLinkUrl(link.attr("href"));
+            if(link != null) {
+                news.setLinkUrl(link.attr("href"));
+            }
 
             Element img = element.select(".wrap_thumb img").first();
-            news.setImgUrl(img.attr("src"));
+            if(img != null) {
+                news.setImgUrl(img.attr("src"));
+            }
 
             Element title = element.select(".wrap_tit a").first();
             news.setTitle(title.text());
+            if(link == null) {
+                news.setLinkUrl(title.attr("href"));
+            }
 
             Element info = element.select(".cont_inner .f_nb").first();
             news.setInfo(info.text());

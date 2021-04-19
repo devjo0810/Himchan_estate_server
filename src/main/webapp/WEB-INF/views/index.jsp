@@ -4,7 +4,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/resources/css/home.css">
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -17,9 +17,11 @@
             <hr>
             <c:forEach var="news" items="${newsList}">
                 <div class="news-item">
-                    <a href="${news.linkUrl}" target="_blank" class="news-img-wrap">
-                        <img src="${news.imgUrl}" width="80" height="80" class="news-img">
-                    </a>
+                    <c:if test="${!empty news.imgUrl}">
+                        <a href="${news.linkUrl}" target="_blank" class="news-img-wrap">
+                            <img src="${news.imgUrl}" width="80" height="80" class="news-img" alt="이미지 없음">
+                        </a>
+                    </c:if>
                     <div>
                         <a href="${news.linkUrl}" target="_blank" class="news-title">
                             ${news.title}
