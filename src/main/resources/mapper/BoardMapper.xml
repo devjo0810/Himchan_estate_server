@@ -25,20 +25,17 @@
     <select id="getBoardCount" resultType="_int">
         SELECT COUNT(*)
         FROM BOARD
-        WHERE BOARD_SECRET = 'Y'
     </select>
 
     <select id="boardList" resultMap="BoardVO">
         SELECT *
         FROM BOARD
-        WHERE BOARD_SECRET = 'Y'
         ORDER BY BOARD_SQ DESC
     </select>
 
     <select id="searchList" resultMap="BoardVO">
         SELECT *
         FROM BOARD
-        WHERE BOARD_SECRET = 'Y'
         <if test="title != null">
             AND BOARD_TITLE LIKE CONCAT('%',#{title},'%')
         </if>
@@ -51,7 +48,6 @@
     <select id="getSearchCount" resultType="_int">
         SELECT COUNT(*)
         FROM BOARD
-        WHERE BOARD_SECRET = 'Y'
         <if test="title != null">
             AND BOARD_TITLE LIKE CONCAT('%',#{title},'%')
         </if>

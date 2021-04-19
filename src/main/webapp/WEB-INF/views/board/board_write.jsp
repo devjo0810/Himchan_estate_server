@@ -30,7 +30,7 @@
                     <textarea placeholder="글을 입력해 주세요." cols="80" rows="6" name="boardContent" id="boardContent"></textarea>
 
                     <div class="btn-area">
-                        <a href="<%= request.getHeader("referer") %>"><button class='btn'>취소</button></a>
+                        <a href="<%= request.getHeader("referer") %>"><button type="button" class='btn'>취소</button></a>
                         <button type="submit" class="btn" id="enroll">등록하기</button>
                     </div>
                 </form>

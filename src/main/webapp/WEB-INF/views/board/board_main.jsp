@@ -35,11 +35,20 @@
                                 <c:param name="boardSq" value="${list.boardSq}"/>
                                 <c:param name="page" value="${ pv.currentPage}"/>
                             </c:url>
-                            <a href="${view}" class="boardView">${list.boardTitle}</a>
+                            <c:if test="${list.boardSecret eq 'N'}">
+                                <c:if test="${empty sessionScope.login || sessionScope.login.memberGrant eq 'G'}">
+                                    <a href="${view}" class="boardView">비공개 글입니다.</a>
+                                </c:if>
+                                <c:if test="${!empty sessionScope.login && sessionScope.login.memberGrant eq 'A'}">
+                                    <a href="${view}" class="boardView">${list.boardTitle}</a>
+                                </c:if>
+                            </c:if>
+                            <c:if test="${list.boardSecret eq 'Y'}">
+                                <a href="${view}" class="boardView">${list.boardTitle}</a>
+                            </c:if>
                         </td>
                         <td><fmt:formatDate value="${list.boardModifyDt}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.boardCount}</td>
-                        <%-- <td>${list.boardSecret}</td> --%>
                     </tr>
                         </c:forEach>
                     </c:if>

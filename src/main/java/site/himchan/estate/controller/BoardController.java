@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import site.himchan.estate.service.BoardService;
-import site.himchan.estate.vo.BoardFileVO;
-import site.himchan.estate.vo.BoardVO;
-import site.himchan.estate.vo.PageVo;
-import site.himchan.estate.vo.Pagination;
+import site.himchan.estate.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,6 +40,7 @@ public class BoardController {
         PageVo pv = null;
         List<BoardVO> bList = null;
         Map<String, String> map = new HashMap<String, String>();
+
         if(sVal != null){
             if(sCate.equals("title")){
                 map.put("title", sVal);
@@ -140,17 +138,44 @@ public class BoardController {
 
     @RequestMapping("/view")
     public String boardView( Model m, @RequestParam("boardSq")long boardSq,
-                                        @RequestParam("page")int page){
+                                        @RequestParam("page")int page,
+                                        HttpSession session) throws Exception {
 
+        LoginVO loginUser = (LoginVO)session.getAttribute("login");
         BoardVO board = boardService.boardView(boardSq);
         List<BoardFileVO> fileList = boardService.findByBoardSq(boardSq);
 
-        m.addAttribute("board", board);
-        m.addAttribute("page", page);
-        m.addAttribute("files", fileList);
+        System.out.println("secret : " + board.getBoardSecret());
+        System.out.println("grant : " + loginUser);
+        boolean secret = board.getBoardSecret().equals("N");
 
-        return "board/board_view";
+        if(secret){
+            if(loginUser != null && loginUser.getMemberGrant().equals("A")){
+                m.addAttribute("board", board);
+                m.addAttribute("page", page);
+                m.addAttribute("files", fileList);
+                return "board/board_view";
+            } else {
+                session.setAttribute("msg", "게시글 열람 권한이 없습니다..");
+                return "redirect:/board";
+            }
+        } else{
+            m.addAttribute("board", board);
+            m.addAttribute("page", page);
+            m.addAttribute("files", fileList);
+            return "board/board_view";
+        }
     }
+
+//        if (secret && (loginUser == null || loginUser.getMemberGrant().equals('G'))) {
+//            session.setAttribute("msg", "게시글 열람 권한이 없습니다..");
+//            return "redirect:/board";
+//        } else {
+//            m.addAttribute("board", board);
+//            m.addAttribute("page", page);
+//            m.addAttribute("files", fileList);
+//            return "board/board_view";
+//        }
 
     @PostMapping("/delete")
     @ResponseBody
