@@ -23,7 +23,7 @@
                         <c:if test="${fn:length(files) > 0}">
                             <c:forEach var="file" items="${files}">
                                 <br />
-                                <a href="${contextPath}/resources/uploadFiles/${file.fileNm}" download="${file.fileOriginNm}">${file.fileOriginNm} size:${file.fileSize}(byte)</a>
+                                <a href="${uploadFilePath}/${file.fileNm}" download="${file.fileOriginNm}">${file.fileOriginNm} size:${file.fileSize}(byte)</a>
                             </c:forEach>
                         </c:if>
                         <c:if test="${fn:length(files) <= 0}">

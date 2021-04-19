@@ -81,7 +81,7 @@ public class BoardService {
 //        String root = request.getSession().getServletContext().getRealPath("/");
 //        String path = root + "\\uploadFiles";
 
-        String buildPath = "/var/www/html/resource/uploadFiles";
+        String buildPath = "/var/www/html/himchan_estate/resource/uploadFiles";
 
         File folder = new File(buildPath);
         if(!folder.exists()){
