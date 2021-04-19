@@ -78,14 +78,16 @@ public class BoardService {
     public int fileUpload(List<MultipartFile> files, HttpServletRequest request, long key) throws Exception {
         int result = 0;
         Map<String, Object> param = new HashMap<>();
-        String root = request.getSession().getServletContext().getRealPath("/");
-        String path = root + "\\uploadFiles";
+//        String root = request.getSession().getServletContext().getRealPath("/");
+//        String path = root + "\\uploadFiles";
 
-        File folder = new File(path);
+        String buildPath = "/var/www/html/resource/uploadFiles";
+
+        File folder = new File(buildPath);
         if(!folder.exists()){
             folder.mkdirs();
         }
-        param.put("path", path);
+        param.put("path", buildPath);
         param.put("boardSq", key);
 
         for(MultipartFile file : files) {
@@ -98,7 +100,7 @@ public class BoardService {
             UUID uuid = UUID.randomUUID();
             String changeFileName = uuid.toString() + extension;
 
-            file.transferTo(new File(path + "\\" + changeFileName));
+            file.transferTo(new File(buildPath + "/" + changeFileName));
             param.put("originName", originFileName);
             param.put("name", changeFileName);
             param.put("fileSize", fileSize);
