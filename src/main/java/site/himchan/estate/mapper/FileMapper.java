@@ -13,4 +13,6 @@ public interface FileMapper {
     int save(Map<String, Object> param);
 
     List<BoardFileVO> findByBoardSq(long boardSq);
+
+    BoardFileVO findByFileName(String fileName);
 }

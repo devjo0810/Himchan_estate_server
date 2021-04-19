@@ -2,6 +2,7 @@ package site.himchan.estate.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.tika.Tika;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -77,11 +78,13 @@ public class BoardService {
 
     public int fileUpload(List<MultipartFile> files, HttpServletRequest request, long key) throws Exception {
         int result = 0;
+        Tika tika = new Tika();
         Map<String, Object> param = new HashMap<>();
 //        String root = request.getSession().getServletContext().getRealPath("/");
-//        String path = root + "\\uploadFiles";
 
-        String buildPath = "/var/www/html/himchan_estate/resource/uploadFiles";
+//        String buildPath = "/var/www/html/himchan_estate/resource/uploadFiles";
+        String buildPath = "/home/ubuntu/uploadFiles";
+//        String buildPath = "C:\\home\\ubuntu\\uploadFiles";
 
         File folder = new File(buildPath);
         if(!folder.exists()){
@@ -99,11 +102,14 @@ public class BoardService {
             String extension = originFileName.substring(originFileName.lastIndexOf("."));
             UUID uuid = UUID.randomUUID();
             String changeFileName = uuid.toString() + extension;
+            String mimeType = tika.detect(file.getInputStream());
 
             file.transferTo(new File(buildPath + "/" + changeFileName));
+//            file.transferTo(new File(buildPath + "\\" + changeFileName));
             param.put("originName", originFileName);
             param.put("name", changeFileName);
             param.put("fileSize", fileSize);
+            param.put("type", mimeType);
             result = fileMapper.save(param);
         }
 

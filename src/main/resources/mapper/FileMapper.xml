@@ -7,19 +7,26 @@
             FILE_ORIGIN_NM,
             FILE_NM,
             BOARD_SQ,
-            FILE_SIZE
+            FILE_SIZE,
+            FILE_TYPE
         )
         VALUES (
             #{path},
             #{originName},
             #{name},
             #{boardSq},
-            #{fileSize}
+            #{fileSize},
+            #{type}
         )
     </insert>
 
     <select id="findByBoardSq" resultType="site.himchan.estate.vo.BoardFileVO">
         SELECT * FROM BOARD_FILE
         WHERE BOARD_SQ = #{boardSq}
+    </select>
+
+    <select id="findByFileName" resultType="site.himchan.estate.vo.BoardFileVO">
+        SELECT * FROM BOARD_FILE
+        WHERE FILE_NM = #{fileName}
     </select>
 </mapper>
