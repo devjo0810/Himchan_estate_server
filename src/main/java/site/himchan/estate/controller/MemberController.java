@@ -40,20 +40,28 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@RequestParam String id,
                         @RequestParam String password,
-                        HttpSession session) throws Exception {
+                        HttpSession session) {
 
+        String returnUrl;
         MemberVO member = new MemberVO();
         member.setMemberId(id);
         member.setMemberPwd(password);
-        LoginVO login = memberService.login(member);
+        try {
+            LoginVO login = memberService.login(member);
 
-        if(login != null) {
-            session.setAttribute("login", login);
-            session.setAttribute("msg", "로그인 성공");
-        } else {
-            session.setAttribute("msg", "로그인 실패");
+            if(login != null) {
+                session.setAttribute("login", login);
+                session.setAttribute("msg", login.getMemberId() + "님 환영합니다!");
+                returnUrl = "redirect:/";
+            } else {
+                session.setAttribute("msg", "회원 정보가 일치하지 않습니다.");
+                returnUrl = "redirect:/login";
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            returnUrl = "error/exception";
         }
-        return "redirect:/";
-//        return new ResponseEntity(memberService.login(member), HttpStatus.OK);
+
+        return returnUrl;
     }
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
-    <script src="/resources/js/board.js"></script>
+    <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -18,10 +18,10 @@
             <table id="board-table">
                 <thead>
                     <tr>
-                        <th width="5%">No</th>
-                        <th width="60%">Title</th>
-                        <th width="15%">Date</th>
-                        <th width="5%">Count</th>
+                        <th width="5%">번호</th>
+                        <th width="60%">제목</th>
+                        <th width="15%">날짜</th>
+                        <th width="5%">조회수</th>
                         <%-- <th width="15%">File</th> --%>
                     </tr>
                 </thead>
@@ -71,12 +71,12 @@
                                     <option value="content">내용</option>
                                 </select>
                                 <input type="text" placeholder="검색어를 입력해주세요." name="searchValue" id="searchValue"/>
-                                <button style="border: 1px solid black; padding-top: 0px;" id="searchBtn">조회</button>
+                                <button class="btn main-bg" id="searchBtn">조회</button>
                             </td>
 
                             <td style="text-align: right;">
-                                <a href="/board/writeForm" style="border: 1px solid black;">
-                                    <button>글쓰기</button>
+                                <a href="/board/writeForm">
+                                    <button class="btn sub-bg">글쓰기</button>
                                 </a>
                             </td>
                         </tr>
@@ -126,5 +126,6 @@
         <%@ include file="/WEB-INF/views/include/html_right_section.jspf" %>
     </div>
     <%@ include file="/WEB-INF/views/include/html_footer.jspf" %>
+    <script src="/resources/js/board.js"></script>
 </body>
 </html>

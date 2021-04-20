@@ -4,8 +4,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
-    <link rel="stylesheet" href="/resources/css/home.css">
-    <script src="/resources/js/board.js"></script>
+    <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -39,6 +38,7 @@
         <%@ include file="/WEB-INF/views/include/html_right_section.jspf" %>
     </div>
     <%@ include file="/WEB-INF/views/include/html_footer.jspf" %>
+    <script src="/resources/js/board.js"></script>
     <script>
         $(document).ready(function(){
             $("#uploadForm").on("submit", function() {

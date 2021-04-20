@@ -25,15 +25,17 @@ public class MemberService {
         return memberMapper.findById(id);
     }
 
-    public LoginVO login(MemberVO member)  throws Exception{
+    public LoginVO login(MemberVO member) throws Exception{
         LoginVO login = null;
         MemberVO origin = findById(member.getMemberId());
         if(origin == null) {
-            throw new Exception("Not Found member id");
+//            throw new Exception("Not Found member id");
+            return null;
         }
 
         if(passwordEncoder.matches(member.getMemberPwd(), origin.getMemberPwd()) == false) {
-            throw new Exception("Not Matched Password");
+//            throw new Exception("Not Matched Password");
+            return null;
         } else {
             login = new LoginVO(origin.getMemberSq(), origin.getMemberId(), origin.getMemberCreateDt(), origin.getMemberGrant());
         }

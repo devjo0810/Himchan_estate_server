@@ -1,18 +1,6 @@
-server:
-  port: 80
-  tomcat:
-    file-encoding: UTF-8
-  servlet:
-    jsp:
-      init-parameters:
-        development: true
-    session:
-      timeout: 7200
-  error:
-    whitelabel:
-      enabled: false
-
 spring:
+  profiles:
+    active: dev
   devtools:
     livereload:
       enabled: true
@@ -40,3 +28,16 @@ spring:
     url: jdbc:mariadb://3.36.171.96:3306/himchan?characterEncoding=UTF-8?serverTimeZone=Asia/Seoul
     username: root
     password: test1234
+server:
+  port: 8085
+  tomcat:
+    file-encoding: UTF-8
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
+    session:
+      timeout: 7200
+  error:
+    whitelabel:
+      enabled: false

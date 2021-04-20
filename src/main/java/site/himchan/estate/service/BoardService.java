@@ -3,11 +3,13 @@ package site.himchan.estate.service;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.tika.Tika;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import site.himchan.estate.config.PropertyUploadConfig;
 import site.himchan.estate.mapper.BoardMapper;
 import site.himchan.estate.mapper.FileMapper;
 import site.himchan.estate.vo.BoardFileVO;
@@ -31,6 +33,7 @@ import java.util.UUID;
 public class BoardService {
     private final BoardMapper boardMapper;
     private final FileMapper fileMapper;
+    private final PropertyUploadConfig propertyUploadConfig;
 
     public List<Map<String, Object>> findAll() {
         return boardMapper.findAll();
@@ -77,20 +80,17 @@ public class BoardService {
     }
 
     public int fileUpload(List<MultipartFile> files, HttpServletRequest request, long key) throws Exception {
+        String uploadFilePath = propertyUploadConfig.getPath();
+        String uploadFileSeparator = propertyUploadConfig.getSeparator();
         int result = 0;
         Tika tika = new Tika();
         Map<String, Object> param = new HashMap<>();
-//        String root = request.getSession().getServletContext().getRealPath("/");
 
-//        String buildPath = "/var/www/html/himchan_estate/resource/uploadFiles";
-        String buildPath = "/home/ubuntu/uploadFiles";
-//        String buildPath = "C:\\home\\ubuntu\\uploadFiles";
-
-        File folder = new File(buildPath);
+        File folder = new File(uploadFilePath);
         if(!folder.exists()){
             folder.mkdirs();
         }
-        param.put("path", buildPath);
+        param.put("path", uploadFilePath);
         param.put("boardSq", key);
 
         for(MultipartFile file : files) {
@@ -104,8 +104,7 @@ public class BoardService {
             String changeFileName = uuid.toString() + extension;
             String mimeType = tika.detect(file.getInputStream());
 
-            file.transferTo(new File(buildPath + "/" + changeFileName));
-//            file.transferTo(new File(buildPath + "\\" + changeFileName));
+            file.transferTo(new File(uploadFilePath + uploadFileSeparator + changeFileName));
             param.put("originName", originFileName);
             param.put("name", changeFileName);
             param.put("fileSize", fileSize);

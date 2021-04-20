@@ -464,6 +464,15 @@ body {
     background-color: #18212C;
 }
 
+.red-bg {
+    background-color: rgb(255, 43, 43);
+    color: white;
+}
+.btn.red-bg:hover,
+.red-bg .item:hover {
+    background-color: rgb(255, 70, 70);
+}
+
 .group-input {
     width: calc(100% - 30px);
     border: 1px solid rgb(131, 131, 131);
