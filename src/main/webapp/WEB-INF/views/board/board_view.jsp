@@ -33,7 +33,9 @@
                     <textarea cols="80" style="min-height: 133.6px;" readonly>${board.boardContent}</textarea>
                     <input type="hidden" value="${board.boardSq}" id="delBtn">
                     <div class="btn-area">
+                    <c:if test="${!empty sessionScope.login && sessionScope.login.memberGrant eq 'A'}">
                         <button class='btn' id="delete">삭제</button>
+                    </c:if>
                         <a href="<%= request.getHeader("referer") %>"><button class='btn'>뒤로가기</button></a>
                     </div>
                 </div>

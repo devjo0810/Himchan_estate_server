@@ -3,6 +3,7 @@
     border-bottom: 1px solid black;
     padding: 5px 0 5px;
     text-align: center;
+    cursor: pointer;
 }
 
 #board-table th{
@@ -33,15 +34,6 @@
     padding: 1px 6px;
 }
 
-#etc-btn{
-    margin-top: 30px;
-}
-
-#etc-btn tbody>tr>td{
-    padding-top: 15px;
-    height: 40px;
-}
-
 .write-area{
     width: 600px;
     margin: 0 23px;
@@ -58,7 +50,6 @@
     text-overflow: ellipsis;
     cursor: pointer;
 }
-
 
 .write-area>p{
     margin-top: 5px;
@@ -78,4 +69,30 @@
 #file-area{
     display: inline-block;
     width: 65%;
+}
+
+.etc-area{
+    margin: 1% 0 0 0;
+}
+
+.search-area{
+    display: inline-block;
+}
+
+.write-btn{
+    display: inline-block;
+    float: right;
+}
+
+#searchCate{
+    height: 30px;
+    margin-bottom: 1%
+}
+#searchValue{
+    height: 30px;
+    margin-bottom: 1%
+}
+
+.paging-area{
+    margin: 4% 0 0 40%;
 }
