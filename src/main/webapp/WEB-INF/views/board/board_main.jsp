@@ -19,9 +19,9 @@
                 <thead>
                     <tr>
                         <th width="5%">번호</th>
-                        <th width="60%">제목</th>
-                        <th width="15%">날짜</th>
-                        <th width="5%">조회수</th>
+                        <th width="50%">제목</th>
+                        <th width="20%">날짜</th>
+                        <th width="10%">조회수</th>
                         <%-- <th width="15%">File</th> --%>
                     </tr>
                 </thead>
@@ -66,18 +66,16 @@
 
             <div class="etc-area">
                 <div class="search-area">
-                    <select name="searchCate" id="searchCate">
+                    <select name="searchCate" id="searchCate" class="h-30">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                    <input type="text" placeholder="검색어를 입력해주세요." name="searchValue" id="searchValue"/>
-                    <button class="btn main-bg" id="searchBtn">조회</button>
+                    <input type="text" placeholder="검색어를 입력해주세요." name="searchValue" id="searchValue" class="h-30"/>
+                    <button class="btn main-bg h-30" id="searchBtn">조회</button>
                 </div>
-                <div class="write-btn">
-                    <a href="/board/writeForm">
-                        <button class="btn sub-bg">글쓰기</button>
-                    </a>
-                </div>
+                <a href="/board/writeForm">
+                    <button class="btn sub-bg h-30">글쓰기</button>
+                </a>
             </div>
 
             <div class="paging-area">

@@ -10,9 +10,12 @@
 <body>
     <div class="sign-page">
         <div class="sign-wrap">
-            <a href="/">
+            <div class="sign-title">
+                <a href="/">
+                    <img src="/resources/images/verti-logo.png">
+                </a>
                 <h2>LOGIN</h2>
-            </a>
+            </div>
             <form action="/member/login" method="POST" id="loginForm">
                 <div class="input-group">
                     <label for="login_id" class="label">ID</label>

@@ -1,14 +1,21 @@
+#board-table {
+    margin-top: 25px;
+}
 
 #board-table td{
     border-bottom: 1px solid black;
-    padding: 5px 0 5px;
+    padding: 5px 0;
     text-align: center;
     cursor: pointer;
 }
 
 #board-table th{
     border-bottom: 1px solid black;
-    padding: 5px 0 5px;
+    padding: 5px 0;
+}
+
+#board-table tbody tr:hover {
+    background-color: rgb(218, 218, 218);
 }
 
 .disable{
@@ -34,9 +41,14 @@
     padding: 1px 6px;
 }
 
+.able:hover {
+    font-weight: bold;
+}
+
 .write-area{
-    width: 600px;
-    margin: 0 23px;
+    width: 100%;
+    margin-top: 25px;
+    padding: 0 30px;
 }
 
 .write-area> span{
@@ -56,14 +68,44 @@
     text-overflow: ellipsis;
 }
 
+.write-area textarea {
+    width: 100%;
+    min-height: 200px;
+}
+
+.write-area .content-wrap {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 5px;
+    border: 1px solid rgb(131, 131, 131);
+    padding: 10px;
+}
+
+.write-title {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.write-title>span {
+    width: 50px;
+}
+
+.write-title>input {
+    width: calc(100% - 50px);
+}
+
 .btn-area{
-    margin-left: 230px;
     margin-top: 15px;
 }
 
-#boardTitle{
-    margin: 5px 0 5px 0;
-    width: 96.3%;
+.btn-area>*{
+    margin-right: 7px;
+}
+
+.btn-area>*:last-child {
+    margin-right: 0;
 }
 
 #file-area{
@@ -72,27 +114,34 @@
 }
 
 .etc-area{
-    margin: 1% 0 0 0;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search-area{
-    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.search-area>* {
+    margin-right: 7px;
+}
+.search-area>*:last-child {
+    margin-right: 0;
+}
+#searchValue {
+    padding-left: 5px;
 }
 
 .write-btn{
     display: inline-block;
-    float: right;
-}
-
-#searchCate{
-    height: 30px;
-    margin-bottom: 1%
-}
-#searchValue{
-    height: 30px;
-    margin-bottom: 1%
 }
 
 .paging-area{
-    margin: 4% 0 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }

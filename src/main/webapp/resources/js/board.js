@@ -25,14 +25,8 @@ $(document).ready(function(){
             }
         })
     });
-    $('.able').mouseenter(function(){
-        $(this).css({'font-weight':'bold', 'font-size': '14px'});
-    }).mouseout(function(){
-        $(this).css({'font-weight':'normal', 'font-size': '14px'})
-    });
 
     var boardTr = $('#board-table').find('tr')
-    var boardSq = $('')
     $(boardTr).on("click",function(){
 
         var boardSq = $(this).find("#boardSq").val();
@@ -40,12 +34,6 @@ $(document).ready(function(){
 
         location.href="/board/view?boardSq=" + boardSq + "&page=" + page;
     })
-
-    $(boardTr).mouseenter(function(){
-        $(this).css({'font-weight':'bold'});
-    }).mouseout(function(){
-        $(this).css({'font-weight':'normal'})
-    });
 
     $('#searchBtn').on("click", function(){
         var sVal = $('#searchValue').val();

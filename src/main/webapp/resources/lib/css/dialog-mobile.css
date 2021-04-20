@@ -64,7 +64,12 @@
   border-radius: 0 0 5px 5px;
   color: #000000;
   background: #EEEEEE;
+  cursor: pointer;
 }
+.dialog-mobile .dialog-button:hover {
+  background: #cccccc;
+}
+
 .dialog-mobile .dialog-sure-button,
 .dialog-mobile .dialog-cancel-button {
   float: left;
@@ -74,6 +79,10 @@
   text-align: center;
   background: #EEEEEE;
   cursor: pointer;
+}
+.dialog-mobile .dialog-sure-button:hover,
+.dialog-mobile .dialog-cancel-button:hover {
+  background: #cccccc;
 }
 .dialog-mobile .dialog-sure-button {
   color: #1C86EE;

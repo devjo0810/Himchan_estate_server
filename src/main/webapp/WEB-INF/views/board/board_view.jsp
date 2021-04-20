@@ -22,7 +22,8 @@
                         <c:if test="${fn:length(files) > 0}">
                             <c:forEach var="file" items="${files}">
                                 <br />
-                                <a href="${uploadFilePath}/${file.fileNm}" download="${file.fileOriginNm}">${file.fileOriginNm} size:${file.fileSize}(byte)</a>
+                                <a href="${uploadFilePath}/${file.fileNm}" class="sign-link" download="${file.fileOriginNm}">${file.fileOriginNm}</a>
+                                <span class="sub-caption">(${file.fileSize} byte)</span>
                             </c:forEach>
                         </c:if>
                         <c:if test="${fn:length(files) <= 0}">
@@ -30,11 +31,11 @@
                         </c:if>
                     </p>
                     <hr>
-                    <textarea cols="80" style="min-height: 133.6px;" readonly>${board.boardContent}</textarea>
+                    <div class="content-wrap">${board.boardContent}</div>
                     <input type="hidden" value="${board.boardSq}" id="delBtn">
                     <div class="btn-area">
                     <c:if test="${!empty sessionScope.login && sessionScope.login.memberGrant eq 'A'}">
-                        <button class='btn' id="delete">삭제</button>
+                        <button class='btn red-bg' id="delete">삭제</button>
                     </c:if>
                         <a href="<%= request.getHeader("referer") %>"><button class='btn'>뒤로가기</button></a>
                     </div>

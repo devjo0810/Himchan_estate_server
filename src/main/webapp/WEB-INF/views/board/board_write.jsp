@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/WEB-INF/views/include/html_head.jspf" %>
     <link rel="stylesheet" href="/resources/css/board.css">
+    <script src="https://cdn.tiny.cloud/1/y6ypfcu3qs0kqjfkb2vmbkx6t2pvqk8zqu5pyt8uwmu353yr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/views/include/html_header.jspf" %>
@@ -25,12 +26,15 @@
                         <option value="N">비공개</option>
                     </select>
                     <hr>
-                    <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력해 주세요.">
-                    <textarea placeholder="글을 입력해 주세요." cols="80" rows="6" name="boardContent" id="boardContent"></textarea>
-
+                    <div class="write-title">
+                        <span>제목</span>
+                        <input type="text" name="boardTitle" id="boardTitle" placeholder="제목을 입력해 주세요.">
+                    </div>
+                    <textarea placeholder="내용을 입력해 주세요." id="tiny"></textarea>
+                    <input type="hidden" name="boardContent" id="boardContent">
                     <div class="btn-area">
-                        <a href="<%= request.getHeader("referer") %>"><button type="button" class='btn'>취소</button></a>
-                        <button type="submit" class="btn" id="enroll">등록하기</button>
+                        <a href="<%= request.getHeader("referer") %>" id="cancelBtn"><button type="button" class='btn red-bg'>취소</button></a>
+                        <button type="submit" class="btn main-bg" id="enroll">등록하기</button>
                     </div>
                 </form>
             </div>
@@ -43,14 +47,27 @@
         $(document).ready(function(){
             $("#uploadForm").on("submit", function() {
                 var title = $('#boardTitle').val();
-                var content = $('#boardContent').val();
+
+                var content = tinymce.get("tiny").getContent();
 
                 if(title == '' || content == '') {
                     mcxDialog.alert("제목과 글을 모두  작성해 주세요.");
                     return false;
                 }
+                $("#boardContent").val(content);
 
                 return true;
+            });
+
+            tinymce.init({
+                selector: "#tiny",
+                resize: false,
+                height: '70vh',
+                plugins: [
+                    'advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
+                    'table emoticons template paste help'
+                ]
             });
         });
     </script>

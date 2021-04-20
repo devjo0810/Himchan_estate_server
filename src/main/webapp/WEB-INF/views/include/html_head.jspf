@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/resources/lib/css/dialog-mobile.css">
 <link rel="stylesheet" href="/resources/lib/css/loader.css">
 <link rel="stylesheet" href="/resources/css/common.css">
+<link rel="icon" href="/resources/favicon.png">
 <title>힘찬 부동산</title>
 <script src="/resources/lib/js/jquery.min.js"></script>
 <script src="/resources/lib/js/mcx-dialog.js"></script>
