@@ -31,4 +31,4 @@ spinStop()  -> 글로벌 스피너 중지
 
 ## development url : http://localhost:8085
 
-## Live Demo url : http://hiimchan:8085
+## Live Demo url : http://hiimchan.com
