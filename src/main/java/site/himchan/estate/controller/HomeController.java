@@ -22,10 +22,6 @@ public class HomeController {
     public String home(HttpServletRequest request) throws Exception{
         List<NewsVO> newsList =  crawlerService.getNews();
         request.setAttribute("newsList", newsList);
-
-        for(int i = 0; i < newsList.size(); i++){
-            System.out.println("newsList : " + newsList.get(i));
-        }
         return "index";
     }
 
