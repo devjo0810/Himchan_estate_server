@@ -20,7 +20,8 @@ public class CrawlerService {
     public List<NewsVO> getNews() throws Exception {
         List<NewsVO> newsList = new ArrayList<>();
         Document doc = Jsoup.connect(NEWS_URL).get();
-        Elements elements = doc.select("#clusterResultUL li");
+//        Elements elements = doc.select("#clusterResultUL li");
+        Elements elements = doc.select(".list_news li");
 
         for(Element element : elements) {
             NewsVO news = new NewsVO();
@@ -34,16 +35,19 @@ public class CrawlerService {
                 news.setImgUrl(img.attr("src"));
             }
 
-            Element title = element.select(".wrap_tit a").first();
+//            Element title = element.select(".wrap_tit a").first();
+            Element title = element.select(".wrap_cont a").first();
             news.setTitle(title.text());
             if(link == null) {
                 news.setLinkUrl(title.attr("href"));
             }
 
-            Element info = element.select(".cont_inner .f_nb").first();
+//            Element info = element.select(".cont_inner .f_nb").first();
+            Element info = element.select(".cont_info .f_nb").first();
             news.setInfo(info.text());
 
-            Element content = element.select(".cont_inner .f_eb").first();
+//            Element content = element.select(".cont_inner .f_eb").first();
+            Element content = element.select(".wrap_cont .desc").first();
             news.setContent(content.text());
 
             newsList.add(news);
